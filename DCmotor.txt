@@ -1,0 +1,33 @@
+// Define the motor control pins
+#define IN1 21  // Control pin for direction (forward)
+
+void setup() // Initialize the motor control pin
+{ 
+ 
+  pinMode(IN1, OUTPUT);  // Set the motor to run in one direction
+  
+
+  digitalWrite(IN1, HIGH);  // Set IN1 high for forward direction
+}
+
+void loop()    // Run the motor for a specific duration
+{
+  
+  delay(5000); // Motor runs for 5 seconds
+
+  // Stop the motor
+  digitalWrite(IN1, LOW);  // Set IN1 low to stop the motor
+
+  // Wait before restarting
+  delay(2000); // Wait for 2 seconds
+
+  // Start the motor again
+  digitalWrite(IN1, HIGH);  // Set IN1 high for forward direction
+  delay(5000); // Motor runs for another 5 seconds
+
+  // Stop the motor again
+  digitalWrite(IN1, LOW);  // Set IN1 low to stop the motor
+
+  // Wait before restarting
+  delay(2000); // Wait for 2 seconds
+}

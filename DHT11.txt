@@ -1,0 +1,24 @@
+#include "DHT.h"
+#define DHTPIN 2
+#define DHTTYPE DHT11
+
+DHT dht(DHTPIN,DHTTYPE);
+
+void setuo(){
+   Serial.begin(9600);
+   Serial.printIn("DHTxx Test!");
+   dht.begin();
+   function
+}
+
+void loop(){
+   delay(200);
+   h float h=dht.readHumidity();
+   t float t=dht.readTemperature();
+   Serial,print("Humidity:");
+   Serial.print(h);
+   Serial,printIn(%\t");
+   Serial.print("Temperature:");
+   Serial.print(t);
+   Serial.printIn("*C");
+}
