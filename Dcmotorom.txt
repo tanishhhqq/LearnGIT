@@ -1,0 +1,40 @@
+// Define motor control pins
+const int in1 = 26;        // Control pin for motor direction
+const int in2 = 27;        // Control pin for motor direction
+const int ena = 14;        // PWM control for motor speed
+
+void setup() {
+  // Initialize motor control pins as outputs
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(ena, OUTPUT);
+  
+  // Set initial motor speed (0-255 for PWM on ESP32)
+  ledcSetup(0, 5000, 8);    // 5 kHz PWM, 8-bit resolution
+  ledcAttachPin(ena, 0);
+  ledcWrite(0, 0);          // Start with motor off
+  
+  Serial.begin(115200);
+  Serial.println("DC Motor Control Initialized");
+}
+
+void loop() {
+  // Rotate motor in one direction at half speed
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+  ledcWrite(0, 128);    // Set PWM duty cycle for half speed
+  Serial.println("Motor running clockwise at half speed");
+  delay(2000);
+
+  // Rotate motor in the opposite direction at full speed
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, HIGH);
+  ledcWrite(0, 255);    // Set PWM duty cycle for full speed
+  Serial.println("Motor running counterclockwise at full speed");
+  delay(2000);
+
+  // Stop the motor
+  ledcWrite(0, 0);      // Set PWM duty cycle to 0 (stop)
+  Serial.println("Motor stopped");
+  delay(2000);
+}
